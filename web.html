@@ -5,78 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        #budget-form, #expense-form, #expense-list {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        input[type="text"], input[type="number"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        .rupee-symbol {
-            font-family: Arial, sans-serif;
-        }
-        .over-budget {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        h3 {
-            color: #2c3e50;
-        }
-        #remaining-amount {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .delete-btn {
-            background-color: #e74c3c;
-        }
-        .delete-btn:hover {
-            background-color: #c0392b;
-        }
+        /* Your CSS styles here */
     </style>
 </head>
 <body>
@@ -113,68 +42,8 @@
     </div>
 
     <script>
-        let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-        let budget = parseFloat(localStorage.getItem('budget')) || 0;
-
-        function renderExpenses() {
-            const tbody = document.getElementById('expenses-body');
-            tbody.innerHTML = '';
-            let total = 0;
-            expenses.forEach((expense, index) => {
-                const row = tbody.insertRow();
-                row.innerHTML = `
-                    <td>${expense.name}</td>
-                    <td><span class="rupee-symbol">₹</span>${expense.amount.toFixed(2)}</td>
-                    <td><button class="delete-btn" onclick="deleteExpense(${index})">Delete</button></td>
-                `;
-                total += expense.amount;
-            });
-            document.getElementById('total-amount').textContent = total.toFixed(2);
-            document.getElementById('budget-display').textContent = budget.toFixed(2);
-            const remaining = budget - total;
-            const remainingElement = document.getElementById('remaining-amount');
-            remainingElement.textContent = remaining.toFixed(2);
-            remainingElement.className = remaining < 0 ? 'over-budget' : '';
-        }
-
-        function addExpense() {
-            const name = document.getElementById('expense-name').value;
-            const amount = parseFloat(document.getElementById('expense-amount').value);
-            
-            if (name && !isNaN(amount)) {
-                expenses.push({ name, amount });
-                saveExpenses();
-                renderExpenses();
-                document.getElementById('expense-name').value = '';
-                document.getElementById('expense-amount').value = '';
-            } else {
-                alert('Please enter a valid expense name and amount in Rupees.');
-            }
-        }
-
-        function deleteExpense(index) {
-            expenses.splice(index, 1);
-            saveExpenses();
-            renderExpenses();
-        }
-
-        function saveExpenses() {
-            localStorage.setItem('expenses', JSON.stringify(expenses));
-        }
-
-        function setBudget() {
-            const budgetAmount = parseFloat(document.getElementById('budget-amount').value);
-            if (!isNaN(budgetAmount)) {
-                budget = budgetAmount;
-                localStorage.setItem('budget', budget);
-                renderExpenses();
-                document.getElementById('budget-amount').value = '';
-            } else {
-                alert('Please enter a valid budget amount in Rupees.');
-            }
-        }
-
-        renderExpenses();
+        // Your JavaScript code here
     </script>
 </body>
 </html>
+
