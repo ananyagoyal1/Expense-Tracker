@@ -133,6 +133,7 @@
     <script>
         let expenses = JSON.parse(localStorage.getItem('expenses')) || {};
         let budget = parseFloat(localStorage.getItem('budget')) || 0;
+        let budgetHistory = JSON.parse(localStorage.getItem('budgetHistory')) || []; // New line for budget history
         let currentMonth = new Date().toISOString().slice(0, 7); // Format: YYYY-MM
 
         function getMonthName(dateString) {
@@ -206,6 +207,8 @@
             const budgetAmount = parseFloat(document.getElementById('budget-amount').value);
             if (!isNaN(budgetAmount)) {
                 budget = budgetAmount;
+                budgetHistory.push({ month: currentMonth, amount: budget }); // Store budget history
+                localStorage.setItem('budgetHistory', JSON.stringify(budgetHistory)); // Save to localStorage
                 localStorage.setItem('budget', budget);
                 renderExpenses();
                 document.getElementById('budget-amount').value = '';
@@ -269,7 +272,6 @@
 
 </body>
 </html>
-
 
 
 
